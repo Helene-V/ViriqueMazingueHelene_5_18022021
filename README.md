@@ -14,10 +14,4 @@ The server should run on `localhost` with default port `3000`. If the
 server runs on another port for any reason, this is printed to the
 console when the server starts, e.g. `Listening on port 3001`.
 
-Clonez ce dépôt. Depuis le dossier du projet, exécutez `npm install`. Tu
-peut alors exécuter le serveur avec `node server`.
-Le serveur doit fonctionner sur `localhost` avec le port par défaut` 3000`. Si la
-le serveur fonctionne sur un autre port pour quelque raison que ce soit, il est imprimé sur le
-console au démarrage du serveur, par ex. `Écoute sur le port 3001`.
-
 # Viriquehelene_5_18022021
