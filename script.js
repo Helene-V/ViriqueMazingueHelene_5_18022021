@@ -4,7 +4,8 @@ fetch('http://localhost:3000/api/teddies')
     let teddie = data                        // import des teddies avec la data
     return teddie.map(function(teddie) {     // fonction pour l'affichage des teddies et infos avec return (considéré comme une promesse ?)
     console.log(teddie)
-//  CREATION DES ELEMENTS ET DES BALISES HTML  
+
+    //  CREATION DES ELEMENTS ET DES BALISES HTML  
     let titreTeddie = document.createElement('div')
     let article = document.createElement('a')
     let description = document.createElement('p')
