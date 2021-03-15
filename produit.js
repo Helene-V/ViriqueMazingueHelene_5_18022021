@@ -12,6 +12,19 @@ function append(parent, elt){
     return parent.appendChild(elt)
 }
 
+// CREATION DU PANIER POUR POUVOIR Y STOCKER TEDDIE
+if (sessionStorage.getItem('panier')) {
+    console.log('le panier existe')
+}
+    else {
+        console.log('creation du panier')
+        let init = []
+        sessionStorage.setItem('panier', (JSON.stringify(init)))
+    
+    }
+let monPanier = JSON.parse(sessionStorage.getItem('panier'))
+
+// RECUPERATION API AVEC FETCH
 fetch('http://localhost:3000/api/teddies/'+ teddieId)
 .then((resp) => resp.json())                 
 .then(function(data) {                       
@@ -36,73 +49,48 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     prix.innerHTML = teddie.price + ' €'
     append(div,prix)
 
-// CREATION DE LA BALISE SELECT
-    let selectTeddie = createNode('select')
-    append(div,selectTeddie)
-
-// CREATION DU MENU DEROULANT DANS LA BALISE SELECT
-    let optionTeddie = createNode('option')
-    optionTeddie.innerHTML = 'choix de la couleur'
-    append(selectTeddie, optionTeddie)
-
-// CREATION BOUTON AJOUT AU PANIER
-    let boutonAdd = createNode('button')
-    boutonAdd.innerHTML = 'Ajoutez-moi !'
-    append(div, boutonAdd)
-    boutonAdd.addEventListener('click', changeTexte)
-    boutonAdd.addEventListener('click', ajoutPanier)
-
-// EVENEMENT CLIC AJOUt AU PANIER
-    function changeTexte () {
-    this.innerHTML = '<strong>Merci !</strong>'
-    this.style.color = 'purple'
-    }
-    function ajoutPanier () {
-    sessionStorage.setItem('_id') //uniquement pour la session en cours, si fermeture d'onglet suppression des données
-    }
-
-// IMPORTATION DES DONNEES API A INTEGRER AU MENU DEROULANT
-    teddie(option).forEach(colors=> {
-    colors.innerHTML = teddie.colors[i]
-    colors.setAttribute('value',teddie.colors[i])
-    append(optionTeddie)
+// AFFICHAGE DES OPTIONS DE COULEURS - LISTE DEROULANTE
+    let idColor = document.getElementById('color')
+    let option = ''
+    teddie.colors.forEach(couleur => {
+        option = document.createElement('option')
+        idColor.appendChild(option)
+        option.setAttribute('value', couleur)
+        option.textContent = couleur
     })
 
+// AJOUTER LES ARTICLES DANS LE PANIER
+function addProduit(){
+    const bouton = document.getElementById('addProduit')
+    bouton.addEventListener('click', async function(){
+        monPanier.push(teddie)
+        sessionStorage.setItem('panier',JSON.stringify(monPanier))
+        alert('article ' + teddie.name + ' bien ajouté au panier')
+        location.reload()
+        })
+    }
+    addProduit()
+    console.log(sessionStorage.getItem('panier'))
 })
 
 /*
-    teddie.forEach(function(colors) {
-    colors.innerHTML = teddie.colors
-    colors.add(teddie.colors)
-    append(selectTeddie,optionTeddie)
-    })
-*/
+DOM Shadow - Virtual DOM : Le DOM SHADOW est toujours rattaché au DOM.
+Sert à la création et modification d'obj JS en // au DOM sans modifier l'API
 
-/*  let optionTeddie = teddie.colors
-    return teddie.array.forEach(selectTeddie => {
-    let optionTeddie = createNode('option')
-    optionTeddie.innerHTML = teddie.colors[0,1,2]
-    selectTeddie.add(teddie.colors)
-    append(div, optionTeddie)
-    console.log(optionTeddie)
-    });*/
+XMLHttpRequest - Ancienne méthode, pour récup' la promesse saisir :  onreadystatechange
+https://developers.google.com/web/updates/2015/03/introduction-to-fetch
 
-    /*Object.entries(teddie.colors).forEach(teddie=> {
-    let optionTeddie = createNode('option')
-    optionTeddie.innerHTML = teddie.colors[0,1,2]
-    selectTeddie.add(teddie.colors)
-    append(div, optionTeddie)
-    console.log(optionTeddie)
-    })*/
+CALLBACK HELL : "Conditions, if, else if, else", mauvaise pratique selon l'écriture en escalier
 
-// colors : arrays  de 1 à 4 elt max - [0-3]
+KEY VALUE : pas compris où le placer ni comment pour récupérer les objets du session storage
 
-/*
-DOM Shadow
-XMLHttpRequest
-CALLBACK HELL
-APPELER Un ELEMENTS SUR LA PAGE params :
+JSON.parse : 'désérialisation' récupération des données obj JS( ex : teddie xyz)
+
+JSON.stringify : 'sérialisation' (retour en chaine de caracteres JSON)
+
+APPELER UN ELEMENTS SUR LA PAGE params :
 https://developer.mozilla.org/fr/docs/Web/API/URL/searchParams
+
 EVENEMENT BOUTON AU CLIC ENVOI DANS LE PANIER (Local storage) session storage
 https://developer.mozilla.org/fr/docs/Web/API/Storage
 */
