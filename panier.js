@@ -1,3 +1,71 @@
+// RECUPERATION DU PANIER 
+let params = (new URL(document.location)).searchParams;
+let teddieId = params.get('id');
+let url = ('http://localhost:3000/api/teddies/')
+let monPanier = window.sessionStorage
+
+function afficherPanier() {
+  let monPanier = JSON.parse(sessionStorage.setItem('panier'))
+  sessionStorage.getItem('panier',JSON.stringify(monPanier))
+  monPanier.push(teddie)
+  window.sessionStorage('panier')
+  return afficherPanier
+}
+
+console.log(afficherPanier)
+
+fetch( url, {
+  method: 'get',
+  origin:'http://localhost:3000/api/teddies/' ,
+  headers: {
+    "Content-type": 'application/json',
+  },
+  body: JSON.stringify('data'),
+  mode: 'cors',
+  credentials: 'same-origin',
+})
+.then((resp) => resp.json())                 
+.then(function(data) {     
+  monPanier.push(teddie) 
+  console.log('Request succeeded with JSON response', data);
+})
+.catch(function (error) {
+  console.log('Request failed', error);
+});
+
+console.log(sessionStorage.getItem('panier'))
+
+/*monPanier = function () {
+  if (storage) {
+    return JSON.parse(sessionStorage.getItem('panier'))
+  }
+}
+monPanier()*/
+
+/*function afficherPanier(){
+  let monPanier = JSON.parse(sessionStorage.getItem('panier'))
+  sessionStorage.getItem('panier',JSON.stringify(monPanier))
+  monPanier.push(teddie)
+  window.sessionStorage['panier']
+}
+afficherPanier()*/
+
+/*
+fetch(url, panier, {
+  method: 'post',
+  //credentials: 'include'
+})
+.then(json)
+.then(function (init) {
+
+  console.log('Request succeeded with JSON response', init);
+})
+.catch(function (error) {
+  console.log('Request failed', error);
+});
+
+const monPanier = document.querySelectorAll('#afficher')
+*/
 // AFFICHER LE DETAIL DU PANIER : PDT + QTE + PRIX (POST, /order, Requête JSON contenant un obj de contact et un array de pdts
 
 /*Validation des données

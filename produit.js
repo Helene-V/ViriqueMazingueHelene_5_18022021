@@ -73,6 +73,7 @@ function addProduit(){
     console.log(sessionStorage.getItem('panier'))
 })
 
+
 /*
 DOM Shadow - Virtual DOM : Le DOM SHADOW est toujours rattaché au DOM.
 Sert à la création et modification d'obj JS en // au DOM sans modifier l'API
