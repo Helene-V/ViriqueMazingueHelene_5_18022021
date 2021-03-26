@@ -31,7 +31,7 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     let teddie = data                        
     const div = document.getElementById('#galerie')
     
-    let titreTeddie = createNode('p')
+    let titreTeddie = createNode('h2')
     titreTeddie.innerHTML = teddie.name
     append(div,titreTeddie)
 
@@ -46,8 +46,15 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     append(div,description)
 
     let prix = createNode('p')
-    prix.innerHTML = teddie.price + ' €'
+    prix.innerHTML = teddie.price/100 + ',00 €'
     append(div,prix)
+
+// AJOUT DES CLASSES
+    div.setAttribute('class', 'card-body rounded bg-light')
+    photo.setAttribute('class', 'rounded')
+    //titre.setAttribute('class', '')
+    description.setAttribute('class', 'text-center')
+    prix.setAttribute('class', 'fw-bold')
 
 // AFFICHAGE DES OPTIONS DE COULEURS - LISTE DEROULANTE
     let idColor = document.getElementById('color')

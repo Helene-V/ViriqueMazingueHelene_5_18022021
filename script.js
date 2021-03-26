@@ -14,19 +14,19 @@ fetch('http://localhost:3000/api/teddies')
 
 //  AJOUT DE CLASSES AUX ELEMENTS   
     article.setAttribute('href', 'produit.html?id=' + teddie._id)
-    article.setAttribute('class','card col-lg-4 col-sm-6 mb-4 card-body shadow p-3 mb-5 bg-body rounded text-decoration-none')
-    article.style.backgroundColor = "#f8f9fa"
+    article.setAttribute('class','card bg-light col-lg-5 col-sm-6 mb-4 card-body shadow p-3 mb-5 bg-body rounded text-decoration-none')
+    //article.style.width('600')
     photo.setAttribute('src', teddie.imageUrl)
     photo.setAttribute('alt','Photo de Teddie made in France')
-    photo.setAttribute('class', 'card-img-top rounded img-fluid')
-    description.setAttribute('class', 'card-text')
-    titreTeddie.setAttribute('class', 'card-title text-center')
+    photo.setAttribute('class', 'rounded img-fluid h-100')
+    description.setAttribute('class', 'card-text text-dark')
+    titreTeddie.setAttribute('class', 'card-title text-center text-black-50')
+    prix.setAttribute('class', 'text-dark')
     
 //  RECUPERATION DE LA DATA A INCLURE AU DOCUMENT HTML
     let descriptionContaint = document.createTextNode(teddie.description)
     let divContaint = document.createTextNode(teddie.name)   
-    let prixContaint = document.createTextNode(teddie.price)
-    prix.innerHTML = '€ '
+    let prixContaint = document.createTextNode(teddie.price/100 + ',00 €')
 
 //  POSITIONNEMENT DES ELEMENTS
     titreTeddie.appendChild(divContaint)
@@ -34,17 +34,16 @@ fetch('http://localhost:3000/api/teddies')
     article.appendChild(photo)
     description.appendChild(descriptionContaint)
     article.appendChild(description)
-    prix.appendChild(prixContaint)
     article.appendChild(prix)
+    prix.appendChild(prixContaint)
 
 // CREATION DU TEMPLATE GALERIE
     let containerGalerie = document.getElementById('galerie');
     containerGalerie.appendChild(article)
     containerGalerie.style.marginTop = "60px";
-    containerGalerie.setAttribute('class', 'row')
-    console.log(containerGalerie) 
-    
+    containerGalerie.setAttribute('class', 'row d-flex justify-content-around')
+    console.log(containerGalerie)
     })
+      
 })
-
 const afficherGalerie = document.querySelectorAll('#galerie');
