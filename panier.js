@@ -21,11 +21,11 @@ let produit = function(photo, nom, prix) {
 //getArticle.innerHTML = `<div>${teddie.name}</div>`
 
 // RECUPERATION DES DONNEES
-let firstName = document.getElementById('inputfirstName'),
-  lastName = document.getElementById('inputlastName'),
-  address = document.getElementById('inputaddress'),
-  city = document.getElementById('inputcity'),
-  email = document.getElementById('inputemail')
+let firstName = document.getElementById('inputFirstName'),
+  lastName = document.getElementById('inputLastName'),
+  address = document.getElementById('inputAddress'),
+  city = document.getElementById('inputCity'),
+  email = document.getElementById('inputEmail')
 
 // REGEX + VERIFICATION VALUE INPUT > REGEX ET NETTOYAGE DES DONNEES DES INPUTS
 /*function testFormulaire(form) {
@@ -116,3 +116,5 @@ function totalPrice(teddie) {
 AMELIORATION CSS
 PLAN DE TEST
 */
+
+//https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
