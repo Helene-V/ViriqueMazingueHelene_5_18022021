@@ -6,7 +6,39 @@ getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Vo
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 monPanier.forEach(function(teddie) {
   let getAfficher = document.getElementById('affichage')
-  getAfficher.innerHTML = `<div>Article : ${teddie.name}</div><div>Prix : ${teddie.price/100 + ',00 €'}</div>`
+  getAfficher.innerHTML = `<div class="d-flex justify-content-center">
+                            <table class="table col-8">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Image</th>
+                                  <th scope="col">Article</th>
+                                  <th scope="col">Prix</th>
+                               </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>${teddie.imageUrl}</td>
+                                  <td>${teddie.name}</td>
+                                  <td>${teddie.price/100 + ',00 €'}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>${teddie.imageUrl}</td>
+                                  <td>${teddie.name}</td>
+                                  <td>${teddie.price/100 + ',00 €'}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>${teddie.imageUrl}</td>
+                                  <td>${teddie.name}</td>
+                                  <td>${teddie.price/100 + ',00 €'}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <h2 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Formulaire de commande</h2>`
 })
 
 // RECUPERATION DES DONNEES
