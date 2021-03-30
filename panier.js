@@ -1,24 +1,13 @@
-// TITRE PAGE PANIER
+// TITRE PAGE
 let getPrez = document.getElementById('presentation')
-getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Commande en cours</h1>`
+getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Votre panier</h1>`
 
-// RECUPERATION DU PANIER 
+// RECUPERATION ET AFFICHAGE DU PANIER 
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
-monPanier.forEach(afficher)
-
-// AFFICHAGE DE MON PANIER - TESTER AVEC LES BACKTICS - A REFAIRE
-function afficher(teddie) {
-document.write("J'affiche le nom de teddie : " + teddie.name + " et voici son prix : "+ teddie.price/100 + ',00 €' + "<br>")
-}
-let produit = function(photo, nom, prix) {
-  return {
-    photo: teddie.imageURL,
-    nom: teddie.name,
-    prix: teddie.price
-  }
-}
-//let getArticle = document.getElementById('affichage')
-//getArticle.innerHTML = `<div>${teddie.name}</div>`
+monPanier.forEach(function(teddie) {
+  let getAfficher = document.getElementById('affichage')
+  getAfficher.innerHTML = `<div>Article : ${teddie.name}</div><div>Prix : ${teddie.price/100 + ',00 €'}</div>`
+})
 
 // RECUPERATION DES DONNEES
 let firstName = document.getElementById('inputFirstName'),
@@ -53,27 +42,33 @@ validation.addEventListener('click', function() {
     city: city.value,
     email: email.value
   }
-  let products = [
-    '5be9c8541c9d440000665243', '5beaa8bf1c9d440000a57d94'
-    // push les id dans products avec une boucle for of
-    ]
-    let postData = [
+  let products = [] 
+     for(let i = 0; i < products.length; i++) {
+      products.push(teddie._id)
+      sessionStorage.setItem('panier',JSON.stringify(maCommande))
+      console.log('liste-moi les produits dans la boucle for' + products[i])
+     }
+    
+    let postData = {
       contact, products
-    ]
+    }
     let jsonPostData = JSON.stringify('postData')
     console.log(postData)
     console.log(jsonPostData)   
     fetch('http://localhost:3000/api/teddies/' + 'order', {
     method: 'POST',
-    //mode : 'cors',
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     },
     body: jsonPostData,
   })
 .then(response => response.json()) 
-.then(json => console.log(json))
+.then(function(data) { 
+  let pushCommande = JSON.parse(sessionStorage.getItem('commande'))
+  console.log(json.orderId)
+  console.log(data)
 //.catch(err => console.log(err))
+  })
 })
 
 // ENVOI DES DONNEES DANS LE SESSION STORAGE ET RETOURNER LA PAGE COMMANDE
