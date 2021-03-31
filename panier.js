@@ -4,10 +4,10 @@ getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Vo
 
 // RECUPERATION ET AFFICHAGE DU PANIER 
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
-monPanier.forEach(function(teddie) {
+monPanier.forEach(teddie => {
   let getAfficher = document.getElementById('affichage')
   getAfficher.innerHTML = `<div class="d-flex justify-content-center">
-                            <table class="table col-8">
+                            <table class="table col-6">
                               <thead>
                                 <tr>
                                   <th scope="col">#</th>
@@ -19,19 +19,19 @@ monPanier.forEach(function(teddie) {
                               <tbody>
                                 <tr>
                                   <th scope="row">1</th>
-                                  <td>${teddie.imageUrl}</td>
+                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
                                   <td>${teddie.name}</td>
                                   <td>${teddie.price/100 + ',00 €'}</td>
                                 </tr>
                                 <tr>
                                   <th scope="row">2</th>
-                                  <td>${teddie.imageUrl}</td>
+                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
                                   <td>${teddie.name}</td>
                                   <td>${teddie.price/100 + ',00 €'}</td>
                                 </tr>
                                 <tr>
-                                  <th scope="row">2</th>
-                                  <td>${teddie.imageUrl}</td>
+                                  <th scope="row">3</th>
+                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
                                   <td>${teddie.name}</td>
                                   <td>${teddie.price/100 + ',00 €'}</td>
                                 </tr>
