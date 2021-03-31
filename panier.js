@@ -4,53 +4,85 @@ getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Vo
 
 // RECUPERATION ET AFFICHAGE DU PANIER 
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
-monPanier.forEach(teddie => {
-  let getAfficher = document.getElementById('affichage')
-  getAfficher.innerHTML = `<div class="d-flex justify-content-center">
-                            <table class="table col-6">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Image</th>
-                                  <th scope="col">Article</th>
-                                  <th scope="col">Prix</th>
-                               </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th scope="row">1</th>
-                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
-                                  <td>${teddie.name}</td>
-                                  <td>${teddie.price/100 + ',00 €'}</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
-                                  <td>${teddie.name}</td>
-                                  <td>${teddie.price/100 + ',00 €'}</td>
-                                </tr>
-                                <tr id="node">
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                          <h2 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Formulaire de commande</h2>`
 
+/*function myFunction() {
+  let node = document.createElement("li");
+  let textnode = document.createTextNode("Water");
+  node.appendChild(textnode);
+  document.getElementById("affichage").appendChild(node);
+}*/
+
+let teddie = monPanier
+monPanier.forEach(teddie => {
+  let node = document.createElement("li")
+  let textnode = document.createTextNode(teddie.name + teddie.price)
+  node.appendChild(textnode);
+  document.getElementById("affichage").appendChild(node);
 })
-//IDEE : si mon panier n'est pas vide alors affichage d'un nouveau gabarit avec les teddies en ciblant les <td>
+
+let price = 0
+monPanier.forEach(totalPrice => {
+price += totalPrice.price
+console.log(totalPrice)
+})
+/*
+let totalCommande = createNode('p')
+totalCommande.innerHTML = ` Montant : ${totalPrice.price / 100} €`
+append(div,totalCommande)
+console.log(totalCommande)*/
+
+
 /*creationTemplate = () => {
 if (teddie = 0) {
-  alert("Votre panier est vide")
+  console.log("Le panier est vide")
 }
 else (teddie < 0) {
   let creerTemplate = document.getElementById('node')
   creerTemplate.innerHTML =`<tr id="node">
-                              <th scope="row">3</th>
+                              <th scope="row">1</th>
                               <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
                               <td>${teddie.name}</td>
                               <td>${teddie.price/100 + ',00 €'}</td>
                            </tr>`
 }}*/
+
+/* A RECUPERER APRES TEST DE LA LISTE si non concluant
+// CREATION DES NOEUDS (balises)
+function createNode(element){
+  return document.createElement(element)
+}
+
+// POSITIONNEMENT DES NOEUDS
+function append(parent, elt){
+  return parent.appendChild(elt)
+}
+
+let teddie = monPanier
+monPanier.forEach(teddie => {
+  let div = document.getElementById('affichage')
+  
+  let titreTeddie = createNode('h2')
+  titreTeddie.innerHTML = teddie.name
+  append(div,titreTeddie)
+
+  let photo = createNode('img')
+  photo.src = teddie.imageUrl
+  photo.setAttribute('alt','Photo de Teddie made in France')
+  photo.width = 200
+  append(div,photo)
+  
+  let prix = createNode('p')
+  prix.innerHTML = teddie.price/100 + ',00 €'
+  append(div,prix)
+
+})
+
+let price = 0
+monPanier.forEach(totalPrice => {
+price += totalPrice.price
+console.log(totalPrice)
+})
+*/
 
 // RECUPERATION DES DONNEES
 let firstName = document.getElementById('inputFirstName'),
