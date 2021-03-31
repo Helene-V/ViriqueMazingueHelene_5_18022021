@@ -29,17 +29,28 @@ monPanier.forEach(teddie => {
                                   <td>${teddie.name}</td>
                                   <td>${teddie.price/100 + ',00 €'}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
-                                  <td>${teddie.name}</td>
-                                  <td>${teddie.price/100 + ',00 €'}</td>
+                                <tr id="node">
                                 </tr>
                               </tbody>
                             </table>
                           </div>
                           <h2 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Formulaire de commande</h2>`
+
 })
+//IDEE : si mon panier n'est pas vide alors affichage d'un nouveau gabarit avec les teddies en ciblant les <td>
+/*creationTemplate = () => {
+if (teddie = 0) {
+  alert("Votre panier est vide")
+}
+else (teddie < 0) {
+  let creerTemplate = document.getElementById('node')
+  creerTemplate.innerHTML =`<tr id="node">
+                              <th scope="row">3</th>
+                              <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
+                              <td>${teddie.name}</td>
+                              <td>${teddie.price/100 + ',00 €'}</td>
+                           </tr>`
+}}*/
 
 // RECUPERATION DES DONNEES
 let firstName = document.getElementById('inputFirstName'),
@@ -58,7 +69,7 @@ let firstName = document.getElementById('inputFirstName'),
 
   if (valid == "")
     validation = input.pushValidation()
-  else {alert(test)
+  else {alert(remplissage du formulaire non conforme)
     return false
   }
 }
