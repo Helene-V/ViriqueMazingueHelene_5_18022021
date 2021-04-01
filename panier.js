@@ -28,57 +28,14 @@ monPanier.forEach(teddie => {
 // document.getElementById("container").appendChild(container)
 }) 
 
+// CALCUL ET ENVOI DU TOTAL PRICE DANS LE SESSION STORAGE
 let price = 0
 monPanier.forEach(totalPrice => {
 price += totalPrice.price
 sessionStorage.setItem('panier',JSON.stringify(monPanier))
+//monPanier.push(price)
 console.log(price/100 + ',00 €')
 })
-
-/*creationTemplate = () => {
-if (teddie = 0) {
-  console.log("Le panier est vide")
-}
-else (teddie < 0) {
-  let creerTemplate = document.getElementById('node')
-  creerTemplate.innerHTML =`<tr id="node">
-                              <th scope="row">1</th>
-                              <td><img src="${teddie.imageUrl}" alt="Photo de Teddie made in France" class="img-thumbnail rounded-3 w-25"></td>
-                              <td>${teddie.name}</td>
-                              <td>${teddie.price/100 + ',00 €'}</td>
-                           </tr>`
-}}*/
-
-/* A RECUPERER APRES TEST DE LA LISTE si non concluant
-// CREATION DES NOEUDS (balises)
-function createNode(element){
-  return document.createElement(element)
-}
-
-// POSITIONNEMENT DES NOEUDS
-function append(parent, elt){
-  return parent.appendChild(elt)
-}
-
-let teddie = monPanier
-monPanier.forEach(teddie => {
-  let div = document.getElementById('affichage')
-  
-  let titreTeddie = createNode('h2')
-  titreTeddie.innerHTML = teddie.name
-  append(div,titreTeddie)
-
-  let photo = createNode('img')
-  photo.src = teddie.imageUrl
-  photo.setAttribute('alt','Photo de Teddie made in France')
-  photo.width = 200
-  append(div,photo)
-  
-  let prix = createNode('p')
-  prix.innerHTML = teddie.price/100 + ',00 €'
-  append(div,prix)
-
-})*/
 
 // RECUPERATION DES DONNEES >>> Desactiver le contrôle via bootstrap 
 let firstName = document.getElementById('inputFirstName'),
@@ -126,16 +83,22 @@ validation.addEventListener('click', async function() {
     email: email.value
   }
 
+// SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
+ /* if( input ('information')) {
+    valid = input.pushPostData(contact)
+  }*/
+
+// PARCOURS LES PRODUITS ET ENVOI ID
   let products = [] 
      for(let i = 0; i < products.length; i++) {
       products.push(teddie._id)
       sessionStorage.setItem('panier',JSON.stringify(monPanier))
      }
-    
+
+// REGROUPEMENT EN UN SEUL OBJET
     let postData = {
       contact, products
     }
-    
     let jsonPostData = JSON.stringify('postData')
     console.log(postData)
     console.log(jsonPostData)
@@ -147,33 +110,20 @@ validation.addEventListener('click', async function() {
     },
     body: jsonPostData,
   })
+
 .then(response => response.json()) 
 .then(function(data) {  
-  monPanier.push(postData)
-  sessionStorage.setItem('maCommande', response.orderID)
+ // monPanier.push(postData)
+  sessionStorage.setItem('panier', jsonPostData.orderId)
   window.location.href = 'commande.html'
-  console.log(json.orderID)
+  console.log(json.orderId)
   console.log(data)
-  .catch(err => console.log(err))
+  //.catch(err => console.log(err))
   })
   
 })
-window.location.href = 'commande.html'
 // ENVOI DES DONNEES DANS LE SESSION STORAGE ET RETOURNER LA PAGE COMMANDE
 //(Note charte : retourne objet contact, array products et order_id = envoyer le nom, le totalPrice et le orderID)
-// Donc, remercier l'utilisateur pour sa commande + prix total + l'identifiant de commande envoyé par le serveur. order_id
 
-
-/* IDEE PUSH DES DONNEES DANS LE SESSION STORAGE
-document.getElementById('validation').addEventListener('click',function(){
-  let valide = true
-  for(let input of document.getElementById('div')){
-    valid = input.pushValidation()
-    if(valide){
-      break
-    }
-  }
-  if(valide){
-}*/
 
 //https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
