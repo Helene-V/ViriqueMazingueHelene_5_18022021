@@ -2,35 +2,37 @@
 let getPrez = document.getElementById('presentation')
 getPrez.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Votre panier</h1>`
 
-// RECUPERATION ET AFFICHAGE DU PANIER 
+// RECUPERATION ET AFFICHAGE DU PANIER
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 
-/*function myFunction() {
-  let node = document.createElement("li");
-  let textnode = document.createTextNode("Water");
-  node.appendChild(textnode);
-  document.getElementById("affichage").appendChild(node);
-}*/
-
 let teddie = monPanier
-monPanier.forEach(teddie => {
-  let node = document.createElement("li")
-  let textnode = document.createTextNode(teddie.name + teddie.price)
-  node.appendChild(textnode);
-  document.getElementById("affichage").appendChild(node);
-})
+monPanier.forEach(teddie => {  
+  let creationListe = document.createElement("ul")
+  let listeElement = document.createElement("li")
+//  let photo = document.createElement('img')
+//  let container = document.createElement('div')
+  
+  let teddieName = document.createTextNode(teddie.name)
+  let teddiePrice = document.createTextNode(teddie.price/100 + ',00 €')
+  
+//  photo.src = teddie.imageUrl
+//  photo.setAttribute('alt','Photo de Teddie made in France')
+//  photo.width = 200  
+  
+  listeElement.appendChild(teddieName)
+  listeElement.appendChild(teddiePrice)
+  creationListe.appendChild(listeElement) 
+//  container.appendChild(photo)
+
+  document.getElementById("affichage").appendChild(creationListe)
+// document.getElementById("container").appendChild(container)
+}) 
 
 let price = 0
 monPanier.forEach(totalPrice => {
 price += totalPrice.price
-console.log(totalPrice)
+console.log(price/100 + ',00 €')
 })
-/*
-let totalCommande = createNode('p')
-totalCommande.innerHTML = ` Montant : ${totalPrice.price / 100} €`
-append(div,totalCommande)
-console.log(totalCommande)*/
-
 
 /*creationTemplate = () => {
 if (teddie = 0) {
@@ -75,14 +77,7 @@ monPanier.forEach(teddie => {
   prix.innerHTML = teddie.price/100 + ',00 €'
   append(div,prix)
 
-})
-
-let price = 0
-monPanier.forEach(totalPrice => {
-price += totalPrice.price
-console.log(totalPrice)
-})
-*/
+})*/
 
 // RECUPERATION DES DONNEES
 let firstName = document.getElementById('inputFirstName'),
@@ -150,7 +145,7 @@ validation.addEventListener('click', function() {
 //(Note charte : retourne objet contact, array products et order_id = envoyer le nom, le totalPrice et le orderID)
 // Donc, remercier l'utilisateur pour sa commande + prix total + l'identifiant de commande envoyé par le serveur. order_id
 /*  sessionStorage.setItem('maCommande', response.orderID)
-  window.location.href = 'confirmation.html'*/
+  window.location.href = 'commande.html'*/
 //let maCommande = JSON.parse(sessionStorage.getItem('commande'))
 
 
@@ -165,26 +160,5 @@ document.getElementById('validation').addEventListener('click',function(){
   }
   if(valide){
 }*/
-
-/* IDEE AFFICHER LE PRIX TOTAL AVEC BOUCLE FOR
-function totalPrice(teddie) {
-  for (let i = 0; i< teddie.length; i++) {
-    let teddie = teddie[i]
-  }
-}
-  console.log(totalPrice)
-*/
-
-// IDEE AFFICHAGE DES PDTS SESSION STORAGE
-//sessionStorage.getItem('price') = document.getElementById('affichage').innerHTML
-//sessionStorage.getItem('name') = document.getElementById('affichage').innerHTML
-
-//let nom = sessionStorage.getItem('name').innerHTML
-//let prix = sessionStorage.getItem('price').innerHTML
-
-/* RESTE A FAIRE
-AMELIORATION CSS
-PLAN DE TEST
-*/
 
 //https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
