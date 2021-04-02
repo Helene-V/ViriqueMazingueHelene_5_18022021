@@ -153,5 +153,6 @@ SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
     valid = input.pushPostData(contact)
 
 ******NETTOYAGE DES DONNEES DES INPUTS******
-
+.reset () >>> reinitialise
+sessionStorage.clear() La méthode clear()permet de retirer tous les éléments d'un ensemble Set
 */
