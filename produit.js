@@ -90,8 +90,6 @@ https://developers.google.com/web/updates/2015/03/introduction-to-fetch
 
 CALLBACK HELL : "Conditions, if, else if, else", mauvaise pratique selon l'écriture en escalier
 
-KEY VALUE : pas compris où le placer ni comment pour récupérer les objets du session storage
-
 JSON.parse : 'désérialisation' récupération des données obj JS( ex : teddie xyz)
 
 JSON.stringify : 'sérialisation' (retour en chaine de caracteres JSON)
