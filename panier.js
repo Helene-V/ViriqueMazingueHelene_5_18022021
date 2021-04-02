@@ -47,7 +47,7 @@ let firstName = document.getElementById('inputFirstName'),
 
 // CLICK VALIDATION FORMULAIRE
 let validation = document.getElementById('validation')
-validation.addEventListener('click', async function() {
+validation.addEventListener('click', function() {
   let contact = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -97,22 +97,14 @@ ENVOI DES DONNEES DANS LE SESSION STORAGE ET RETOURNER LA PAGE COMMANDE
 (Note charte : retourne objet contact, array products et order_id = envoyer le nom, le totalPrice et le orderID)
 
 https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
+ 
 
- SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
- if( input ('information')) {
-    valid = input.pushPostData(contact)
-  
+******REGEX******
 
-const valeursAcceptees = '/^[0-9a-zA-Z]+$/'
-REGEX + VERIFICATION VALUE INPUT > REGEX ET NETTOYAGE DES DONNEES DES INPUTS
-const valeursAccepteesMail = /^[\w\-\.+] + \@[a-zA-Z0-9\.\-] + \.[a-zA-z0-9] {2,4}$/
-if (email.value.match(valeursAccepteesMail)) {
-//  console.log('mail valide')
-  return true
+const valeursAccepteesForm = '/^[0-9a-zA-Z]+$/'
+const valeursAccepteesMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-else {
-  alert('mail non valide')
-
+******VERIFICATION VALUE INPUT******
 
 function testFormulaire(form) {
   valid = validationFirstName(form.firstName.value)
@@ -128,4 +120,45 @@ function testFormulaire(form) {
     return false
   }
 }
+
+function validation(event) {
+  if (firstName.valid.valueMissing) {
+    event.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Prénom manquant"
+    noFirstName.style.color = "red"
+  }
+  else if (valeursAccepteesForm.test(firstName.value) == false) {
+    event.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Caractère invalides"
+    noFirstName.style.color = "red"
+  }
+}
+
+function validation(event) {
+  if (firstName.lastName.address.city.email.validity.valueMissing) {
+    event.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Champ vide"
+    noFirstName.style.color = "red"
+  }
+  else if (valeursAccepteesForm.test(firstName.value) == false) {
+    event.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Caractère invalides"
+    noFirstName.style.color = "red"
+  }
+}
+
+if (email.value.match(valeursAccepteesMail)) {
+//  console.log('mail valide')
+  return true
+
+else {
+  alert('mail non valide')
+
+ 
+SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
+ if( input ('information')) {
+    valid = input.pushPostData(contact)
+
+******NETTOYAGE DES DONNEES DES INPUTS******
+
 */
