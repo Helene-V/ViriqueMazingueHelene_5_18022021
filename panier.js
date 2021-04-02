@@ -97,6 +97,10 @@ ENVOI DES DONNEES DANS LE SESSION STORAGE ET RETOURNER LA PAGE COMMANDE
 (Note charte : retourne objet contact, array products et order_id = envoyer le nom, le totalPrice et le orderID)
 
 https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
+
+> push pour les tableaux et return pour les objets
+> créer des li en suivant les li pour un teddie et ses options
+> suppression de la validation des champs via bootstrap
  
 
 ******REGEX******
@@ -105,7 +109,7 @@ const valeursAccepteesForm = '/^[0-9a-zA-Z]+$/'
 const valeursAccepteesMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 ******VERIFICATION VALUE INPUT******
-
+**test 1**
 function testFormulaire(form) {
   valid = validationFirstName(form.firstName.value)
   valid += validationLastName(form.lastName.value)
@@ -121,39 +125,28 @@ function testFormulaire(form) {
   }
 }
 
-function validation(event) {
-  if (firstName.valid.valueMissing) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Prénom manquant"
-    noFirstName.style.color = "red"
-  }
-  else if (valeursAccepteesForm.test(firstName.value) == false) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
-  }
-}
-
+**test 2** trouver si c'est possible de faire tous les input avec une fonction ou s'il faut les faire un à un
 function validation(event) {
   if (firstName.lastName.address.city.email.validity.valueMissing) {
     event.prenventDefault() // empêche l'envoi du formulaire
     noFirstName.textContent = "Champ vide"
     noFirstName.style.color = "red"
   }
-  else if (valeursAccepteesForm.test(firstName.value) == false) {
+  else if (valeursAccepteesForm.test(firstName.lastName.address.city.value) == false) {
     event.prenventDefault() // empêche l'envoi du formulaire
     noFirstName.textContent = "Caractère invalides"
     noFirstName.style.color = "red"
   }
+
 }
-
-if (email.value.match(valeursAccepteesMail)) {
-//  console.log('mail valide')
+** test 3 spécial mail **
+if (valeursAccepteesMail.test(email.value)) {
   return true
-
-else {
-  alert('mail non valide')
-
+else (valeursAccepteesForm.test(firstName.lastName.address.city.value) == false) {
+    event.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Caractère invalides"
+    noFirstName.style.color = "red"
+}
  
 SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
  if( input ('information')) {
