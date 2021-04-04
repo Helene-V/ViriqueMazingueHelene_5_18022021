@@ -67,25 +67,26 @@ validation.addEventListener('click', function() {
     let postData = {
       contact, products,
     }
-    let jsonPostData = JSON.stringify('postData')
+    let jsonPostData = JSON.stringify(postData) // je le passe en parse au lieu de stringify
     console.log(postData)
     console.log(jsonPostData)
+    console.log(typeof jsonPostData)
 
 // ENVOI DES DONNEES
     fetch('http://localhost:3000/api/teddies/order', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     },
-  
-    body: jsonPostData,
+    body: jsonPostData
   })
 
 .then(response => response.json()) 
 .then(function(data) {  
   sessionStorage.setItem('panier', jsonPostData.orderId)
   window.location.href = 'commande.html'
-  console.log(json.orderId)
+  console.log(jsonPostData.orderId)
   console.log(data)
   //.catch(err => console.log(err))
   })
@@ -93,8 +94,20 @@ validation.addEventListener('click', function() {
 })
 
 /*
-ENVOI DES DONNEES DANS LE SESSION STORAGE ET RETOURNER LA PAGE COMMANDE
-(Note charte : retourne objet contact, array products et order_id = envoyer le nom, le totalPrice et le orderID)
+    let jsonPostData = JSON.stringify(postData) // je le passe en parse au lieu de stringify
+    console.log(postData)
+    console.log(jsonPostData)
+    console.log(typeof jsonPostData)
+
+// ENVOI DES DONNEES
+    fetch('http://localhost:3000/api/teddies/order', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify(jsonPostData), //ici je le stringify pour recevoir l'order 
+  })
 
 https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
 
@@ -139,6 +152,7 @@ function validation(event) {
   }
 
 }
+
 ** test 3 spécial mail **
 if (valeursAccepteesMail.test(email.value)) {
   return true
