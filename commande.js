@@ -1,13 +1,18 @@
 // RECUPERATION ET AFFICHAGE DU PANIER
-const monPanier = JSON.parse(sessionStorage.getItem('panier'))
+const firstName = sessionStorage.getItem('firstName'),
+        orderId = sessionStorage.getItem('orderId'),
+        price = sessionStorage.getItem('price')
 
-// TITRE PAGE
-let getTitre = document.getElementById('titre')
-getTitre.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Commande validée</h1>`
 
 // RECUPERATION ET AFFICHAGE DU SESSION STORAGE
-let orderId = JSON.parse(sessionStorage.getItem('panier'))
-document.getElementById("firstName").innerHTML = panier.contact.firstName
-document.getElementById("orderId").innerHTML = panier.orderId
-document.getElementById("montant").innerHTML = panier.contact.price
+document.getElementById('firstName').innerHTML = firstName
+document.getElementById('orderId').innerHTML =  data.orderId
+document.getElementById('montant').innerHTML = price/100 + ',00 €'
 
+//NETTOYAGE DU SESSION STORAGE
+//sessionStorage.clear()
+
+console.log(orderId)
+
+//let getOrderId = document.getElementById('orderId')
+//getOrderId.innerHTML = data.orderId
