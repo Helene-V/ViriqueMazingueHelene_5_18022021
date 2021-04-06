@@ -84,9 +84,7 @@ validation.addEventListener('click', function() {
   sessionStorage.setItem('firstName', firstName.value)
   document.location.href = 'commande.html'
 })
-
 console.log(orderId)
-
 /*
 https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
 

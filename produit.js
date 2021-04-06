@@ -30,16 +30,16 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
 .then(function(data) {                       
     let teddie = data                        
     const div = document.getElementById('#galerie')
-    
-    let titreTeddie = createNode('h2')
-    titreTeddie.innerHTML = teddie.name
-    append(div,titreTeddie)
 
     let photo = createNode('img')
     photo.src = teddie.imageUrl
     photo.setAttribute('alt','Photo de Teddie made in France')
     photo.width = 500
     append(div,photo)
+
+    let titreTeddie = createNode('h2')
+    titreTeddie.innerHTML = teddie.name
+    append(div,titreTeddie)
 
     let description = createNode('p')
     description.innerHTML = teddie.description
@@ -50,11 +50,11 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     append(div,prix)
 
 // AJOUT DES CLASSES
-    div.setAttribute('class', 'card-body rounded bg-light')
-    photo.setAttribute('class', 'rounded')
-    //titre.setAttribute('class', '')
-    description.setAttribute('class', 'text-center')
-    prix.setAttribute('class', 'fw-bold')
+    div.setAttribute('class', 'card-body rounded bg-light col-md-10')
+    photo.setAttribute('class', 'rounded col-md-8')
+    titreTeddie.setAttribute('class', 'col-md-6')
+    description.setAttribute('class', 'col-md-6 ')
+    prix.setAttribute('class', 'fw-bold col-md-6')
 
 // AFFICHAGE DES OPTIONS DE COULEURS - LISTE DEROULANTE
     let idColor = document.getElementById('color')
