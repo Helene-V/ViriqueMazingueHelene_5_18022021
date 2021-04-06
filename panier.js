@@ -31,17 +31,77 @@ monPanier.forEach(teddie => {
 // CALCUL ET ENVOI DU TOTAL PRICE DANS LE SESSION STORAGE
 let price = 0
 monPanier.forEach(totalPrice => {
-price += totalPrice.price
-sessionStorage.setItem('price',JSON.stringify(price))
-//console.log(price/100 + ',00 €')
+  price += totalPrice.price
+  sessionStorage.setItem('price',JSON.stringify(price))
 })
 
-// RECUPERATION DES DONNEES >>> Desactiver le contrôle via bootstrap 
+// RECUPERATION DES INPUTS
 let firstName = document.getElementById('inputFirstName'),
   lastName = document.getElementById('inputLastName'),
   address = document.getElementById('inputAddress'),
   city = document.getElementById('inputCity'),
   email = document.getElementById('inputEmail')
+
+// RETOURNE INFO AU VISITEUR SI INPUTS INCORRECTS
+let noFirstName = document.getElementById('noFirstName'),
+  noLastName = document.getElementById('noLastName'),
+  noAddress = document.getElementById('noAddress'),
+  noCity = document.getElementById('noCity'),
+  noEmail = document.getElementById('noEmail')
+ 
+// REGEX
+const valeursAccepteesLettres = /^[a-zA-Zéèîï][a-zéèêàçïîÉÈ]+([-'\s][a-zA-Zéèîï][a-zéèêàçïîÉÈ]+)?/
+const valeursAccepteesAddress = /^[0-9a-zA-Z]+$/
+const valeursAccepteesMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+// TEST FORMULAIRE
+function testForm(e) {
+  if (firstName.validity.valueMissing) { //valeurs maquantes
+    e.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Champ vide"
+    noFirstName.style.color = "red"
+  }
+  else if (valeursAccepteesLettres.test(firstName.value) == false) { //erreur de données
+    e.prenventDefault() // empêche l'envoi du formulaire
+    noFirstName.textContent = "Caractère invalides"
+    noFirstName.style.color = "red"
+  }
+  else{}
+  if (lastName.validity.valueMissing) {
+    e.prenventDefault() 
+    noLastName.textContent = "Champ vide"
+    noLastName.style.color = "red"
+  }
+  else if (valeursAccepteesLettres.test(lastName.value) == false) {
+    e.prenventDefault() 
+    noLastName.textContent = "Caractère invalides"
+    noLastName.style.color = "red"
+  }
+  if (address.validity.valueMissing) {
+    e.prenventDefault()
+    noAddress.textContent = "Champ vide"
+    noAddress.style.color = "red"
+  }
+  else if (valeursAccepteesAddress.test(address.value) == false) {
+    e.prenventDefault()
+    noAddress.textContent = "Caractère invalides"
+    noAddress.style.color = "red"
+  }
+  if (city.validity.valueMissing) {
+    e.prenventDefault()
+    noCity.textContent = "Champ vide"
+    noCity.style.color = "red"
+  }
+  else if (valeursAccepteesLettres.test(city.value) == false) {
+    e.prenventDefault()
+    noCity.textContent = "Caractère invalides"
+    noCity.style.color = "red"
+  }
+}
+
+//SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
+/*if( input ('information')) {
+    valid = input.pushPostData(contact)*/
 
 // CLICK VALIDATION FORMULAIRE
 let validation = document.getElementById('validation')
@@ -53,7 +113,7 @@ validation.addEventListener('click', function() {
     city: city.value,
     email: email.value
   }
-
+  
 // PARCOURS LES PRODUITS ET ENVOI ID
   let products = [] 
      for(let i = 0; i < products.length; i++) {
@@ -65,9 +125,6 @@ validation.addEventListener('click', function() {
       contact, products,
     }
     let jsonPostData = JSON.stringify(postData)
-    console.log(postData)
-    console.log(jsonPostData)
-    console.log(typeof jsonPostData)
 
 // ENVOI DES DONNEES
     fetch('http://localhost:3000/api/teddies/order', {
@@ -84,68 +141,6 @@ validation.addEventListener('click', function() {
   sessionStorage.setItem('firstName', firstName.value)
   document.location.href = 'commande.html'
 })
-console.log(orderId)
-/*
-https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation
 
-******REGEX******
 
-const valeursAccepteesForm = '/^[0-9a-zA-Z]+$/'
-const valeursAccepteesMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-
-function validation(event) {
-  if (firstName.validity.valueMissing) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Champ vide"
-    noFirstName.style.color = "red"
-  }
-  else if (valeursAccepteesForm.test(firstName.value) == false) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
-  }
-  if (lastName.validity.valueMissing) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Champ vide"
-    noFirstName.style.color = "red"
-  }
-  else if (valeursAccepteesForm.test(lastName.value) == false) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
-  }
-  if (address.validity.valueMissing) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Champ vide"
-    noFirstName.style.color = "red"
-  }
-  else if (valeursAccepteesForm.test(address.value) == false) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
-  }
-  if (city.validity.valueMissing) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Champ vide"
-    noFirstName.style.color = "red"
-  }
-  else if (valeursAccepteesForm.test(city.value) == false) {
-    event.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
-  }
-  if (valeursAccepteesMail.test(email.value)) {
-  return true
-  else (valeursAccepteesForm.test(firstName.lastName.address.city.value) == false) {
-  event.prenventDefault() // empêche l'envoi du formulaire
-  noFirstName.textContent = "Caractère invalides"
-  noFirstName.style.color = "red"
-  }
-}
- 
-SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
- if( input ('information')) {
-    valid = input.pushPostData(contact)
-    ou return
-    ou inputValide ()
-*/
+//https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation 
