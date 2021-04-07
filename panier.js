@@ -42,70 +42,84 @@ let firstName = document.getElementById('inputFirstName'),
   city = document.getElementById('inputCity'),
   email = document.getElementById('inputEmail')
 
+
 // RETOURNE INFO AU VISITEUR SI INPUTS INCORRECTS
+let testForm = document.getElementById('bouton_envoi')
+
 let noFirstName = document.getElementById('noFirstName'),
   noLastName = document.getElementById('noLastName'),
   noAddress = document.getElementById('noAddress'),
   noCity = document.getElementById('noCity'),
   noEmail = document.getElementById('noEmail')
  
-// REGEX
-const valeursAccepteesLettres = /^[a-zA-Zéèîï][a-zéèêàçïîÉÈ]+([-'\s][a-zA-Zéèîï][a-zéèêàçïîÉÈ]+)?/
-const valeursAccepteesAddress = /^[0-9a-zA-Z]+$/
-const valeursAccepteesMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+// REGEX - EXPRESSION REGULIERE
+const caracteresValid = /^[a-zA-Zéèîï][a-zéèêàçïîÉÈ]+([-'\s][a-zA-Zéèîï][a-zéèêàçïîÉÈ]+)?[^0-9]+$/ 
+const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/ 
+const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+testForm.addEventListener('click', formValid) 
 
 // TEST FORMULAIRE
-function testForm(e) {
-  if (firstName.validity.valueMissing) { //valeurs maquantes
-    e.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Champ vide"
-    noFirstName.style.color = "red"
+function formValid(e){
+  if (inputFirstName.validity.valueMissing) {
+      e.preventDefault()
+      noFirstName.textContent = 'Prénom manquant'
+      noFirstName.style.color = 'red'
+  }else if (caracteresValid.test(inputFirstName.value) == false) {
+      event.preventDefault()
+      noFirstName.textContent = 'format incorrect'
+      noFirstName.style.color = 'orange'
+  }else{
+    console.log('Prénom ok')
   }
-  else if (valeursAccepteesLettres.test(firstName.value) == false) { //erreur de données
-    e.prenventDefault() // empêche l'envoi du formulaire
-    noFirstName.textContent = "Caractère invalides"
-    noFirstName.style.color = "red"
+  if (inputLastName.validity.valueMissing) {
+      e.preventDefault()
+      noLastName.textContent = 'Nom manquant'
+      noLastName.style.color = 'red'
+  }else if (caracteresValid.test(inputLastName.value) == false) {
+      event.preventDefault()
+      noLastName.textContent = 'format incorrect'
+      noLastName.style.color = 'orange'
+  }else{
+    console.log('Nom ok')
   }
-  else{}
-  if (lastName.validity.valueMissing) {
-    e.prenventDefault() 
-    noLastName.textContent = "Champ vide"
-    noLastName.style.color = "red"
+  if (inputAddress.validity.valueMissing) {
+      e.preventDefault()
+      noAddress.textContent = 'Adresse manquante'
+      noAddress.style.color = 'red'
+  }else if (valeursValidAddress.test(inputAddress.value) == false) {
+      event.preventDefault()
+      noAddress.textContent = 'format incorrect'
+      noAddress.style.color = 'orange'
+  }else{
+    console.log('Adresse ok')
   }
-  else if (valeursAccepteesLettres.test(lastName.value) == false) {
-    e.prenventDefault() 
-    noLastName.textContent = "Caractère invalides"
-    noLastName.style.color = "red"
+  if (inputCity.validity.valueMissing) {
+      e.preventDefault()
+      noCity.textContent = 'Ville manquante'
+      noCity.style.color = 'red'
+  }else if (caracteresValid.test(inputCity.value) == false) {
+      event.preventDefault()
+      noCity.textContent = 'format incorrect'
+      noCity.style.color = 'orange'
+  }else{
+    console.log('Ville ok')
   }
-  if (address.validity.valueMissing) {
-    e.prenventDefault()
-    noAddress.textContent = "Champ vide"
-    noAddress.style.color = "red"
-  }
-  else if (valeursAccepteesAddress.test(address.value) == false) {
-    e.prenventDefault()
-    noAddress.textContent = "Caractère invalides"
-    noAddress.style.color = "red"
-  }
-  if (city.validity.valueMissing) {
-    e.prenventDefault()
-    noCity.textContent = "Champ vide"
-    noCity.style.color = "red"
-  }
-  else if (valeursAccepteesLettres.test(city.value) == false) {
-    e.prenventDefault()
-    noCity.textContent = "Caractère invalides"
-    noCity.style.color = "red"
+  if (inputEmail.validity.valueMissing) {
+      e.preventDefault()
+      noEmail.textContent = 'Email manquant'
+      noEmail.style.color = 'red'
+  }else if (valeursValidMail.test(inputEmail.value) == false) {
+      event.preventDefault()
+      noEmail.textContent = 'format incorrect'
+      noEmail.style.color = 'orange'
+  }else{
+    console.log('Mail ok')
   }
 }
 
-//SI LE FORMULAIRE EST COMPLET ENVOI DE CONTACT
-/*if( input ('information')) {
-    valid = input.pushPostData(contact)*/
-
 // CLICK VALIDATION FORMULAIRE
-let validation = document.getElementById('validation')
-validation.addEventListener('click', function() {
+let validation = document.getElementById('bouton_envoi')
+validation.addEventListener('click', function() { //formValid()
   let contact = {
     firstName: firstName.value,
     lastName: lastName.value,
