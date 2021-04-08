@@ -1,7 +1,3 @@
-// TITRE PAGE
-let getPresentation = document.getElementById('presentation')
-getPresentation.innerHTML = `<h1 class="mt-5 pt-5 pb-4 d-flex justify-content-center">Votre panier</h1>`
-
 // RECUPERATION ET AFFICHAGE DU PANIER
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 
@@ -61,7 +57,7 @@ function formValid(e){
       noFirstName.textContent = 'Prénom manquant'
       noFirstName.style.color = 'red'
   }else if (caracteresValid.test(inputFirstName.value) == false) {
-      event.preventDefault()
+      e.preventDefault()
       noFirstName.textContent = 'format incorrect'
       noFirstName.style.color = 'orange'
   }else{
@@ -72,7 +68,7 @@ function formValid(e){
       noLastName.textContent = 'Nom manquant'
       noLastName.style.color = 'red'
   }else if (caracteresValid.test(inputLastName.value) == false) {
-      event.preventDefault()
+      e.preventDefault()
       noLastName.textContent = 'format incorrect'
       noLastName.style.color = 'orange'
   }else{
@@ -83,7 +79,7 @@ function formValid(e){
       noAddress.textContent = 'Adresse manquante'
       noAddress.style.color = 'red'
   }else if (valeursValidAddress.test(inputAddress.value) == false) {
-      event.preventDefault()
+      e.preventDefault()
       noAddress.textContent = 'format incorrect'
       noAddress.style.color = 'orange'
   }else{
@@ -94,7 +90,7 @@ function formValid(e){
       noCity.textContent = 'Ville manquante'
       noCity.style.color = 'red'
   }else if (caracteresValid.test(inputCity.value) == false) {
-      event.preventDefault()
+      e.preventDefault()
       noCity.textContent = 'format incorrect'
       noCity.style.color = 'orange'
   }else{
@@ -105,7 +101,7 @@ function formValid(e){
       noEmail.textContent = 'Email manquant'
       noEmail.style.color = 'red'
   }else if (valeursValidMail.test(inputEmail.value) == false) {
-      event.preventDefault()
+      e.preventDefault()
       noEmail.textContent = 'format incorrect'
       noEmail.style.color = 'orange'
   }else{
