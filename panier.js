@@ -7,25 +7,21 @@ const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 
 let teddie = monPanier
 monPanier.forEach(teddie => {  
-  let creationListe = document.createElement("ul") //sortir le ul et le placer en dur html
   let listeElement = document.createElement("li")
-//  let photo = document.createElement('img')
-//  let container = document.createElement('div')
-  
+  listeElement.setAttribute('class','list-group-item')
+
   let teddieName = document.createTextNode(teddie.name)
   let teddiePrice = document.createTextNode(teddie.price/100 + ',00 €')
-  
-//  photo.src = teddie.imageUrl
-//  photo.setAttribute('alt','Photo de Teddie made in France')
-//  photo.width = 200  
-  
+  let photo = document.createElement('img')
+
+  photo.setAttribute('src', teddie.imageUrl)
+  photo.setAttribute('alt','Photo de Teddie made in France')
+  photo.width = 200
+
+  listeElement.appendChild(photo)
   listeElement.appendChild(teddieName)
   listeElement.appendChild(teddiePrice)
-  creationListe.appendChild(listeElement) 
-//  container.appendChild(photo)
-
-  document.getElementById("affichage").appendChild(creationListe)
-// document.getElementById("container").appendChild(container)
+  document.getElementById("affichage").appendChild(listeElement)
 }) 
 
 // CALCUL ET ENVOI DU TOTAL PRICE DANS LE SESSION STORAGE
