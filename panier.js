@@ -149,4 +149,8 @@ validation.addEventListener('click', function() { //formValid()
 })
 
 
-//https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation 
+/*https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation 
+  if (monPanier == null) {
+  alert('Votre panier est vide')
+}
+*/

@@ -31,33 +31,35 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     let teddie = data                        
     const div = document.getElementById('#galerie')
 
-    let photo = createNode('img')
-    photo.src = teddie.imageUrl
-    photo.setAttribute('alt','Photo de Teddie made in France')
-    photo.width = 500
-    append(div,photo)
-
     let titreTeddie = createNode('h2')
     titreTeddie.innerHTML = teddie.name
     append(div,titreTeddie)
+
+    let photo = createNode('img')
+    photo.src = teddie.imageUrl
+    photo.setAttribute('class', 'img-responsive')
+    photo.setAttribute('alt','Photo de Teddie made in France')
+    photo.width = 500
+    append(div,photo)
 
     let description = createNode('p')
     description.innerHTML = teddie.description
     append(div,description)
 
     let prix = createNode('p')
-    prix.innerHTML = teddie.price/100 + ',00 €'
+    prix.innerHTML = 'Prix : ' + teddie.price/100 + ',00 €' + ' TTC'
     append(div,prix)
 
 // AJOUT DES CLASSES
-    div.setAttribute('class', 'card-body rounded bg-light col-md-10')
-    photo.setAttribute('class', 'rounded col-md-8')
-    titreTeddie.setAttribute('class', 'col-md-6')
-    description.setAttribute('class', 'col-md-6 ')
-    prix.setAttribute('class', 'fw-bold col-md-6')
+    div.setAttribute('class', 'card-body rounded bg-light col-lg-6')
+    titreTeddie.setAttribute('class', 'd-flex justify-content-center mb-3')
+    photo.setAttribute('class', 'rounded justify-content-center')
+    description.setAttribute('class', 'mt-3')
+    prix.setAttribute('class', 'fw-bold')
 
 // AFFICHAGE DES OPTIONS DE COULEURS - LISTE DEROULANTE
     let idColor = document.getElementById('color')
+    append(div,idColor)
     let option = ''
     teddie.colors.forEach(couleur => {
         option = document.createElement('option')
@@ -69,6 +71,7 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
 // AJOUTER LES ARTICLES DANS LE PANIER
 function addProduit(){
     const bouton = document.getElementById('addProduit')
+    append(div,bouton)
     bouton.addEventListener('click', async function(){
         monPanier.push(teddie)
         sessionStorage.setItem('panier',JSON.stringify(monPanier))
