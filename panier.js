@@ -4,15 +4,15 @@ const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 let teddie = monPanier
 monPanier.forEach(teddie => {  
   let listeElement = document.createElement("li")
-  listeElement.setAttribute('class','list-group-item')
+  listeElement.setAttribute('class','list-group-item d-flex justify-content-between align-items-center')
 
-  let teddieName = document.createTextNode(teddie.name)
+  let teddieName = document.createTextNode(teddie.name + ' ')
   let teddiePrice = document.createTextNode(teddie.price/100 + ',00 €')
   let photo = document.createElement('img')
 
   photo.setAttribute('src', teddie.imageUrl)
   photo.setAttribute('alt','Photo de Teddie made in France')
-  photo.width = 200
+  photo.setAttribute('class','w-25')
 
   listeElement.appendChild(photo)
   listeElement.appendChild(teddieName)
@@ -45,10 +45,11 @@ let noFirstName = document.getElementById('noFirstName'),
   noEmail = document.getElementById('noEmail')
  
 // REGEX - EXPRESSION REGULIERE
-const caracteresValid = /^[a-zA-Zéèîï][a-zéèêàçïîÉÈ]+([-'\s][a-zA-Zéèîï][a-zéèêàçïîÉÈ]+)?[^0-9]+$/ 
-const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/ 
-const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË]+$/;
+const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/;
+const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 testForm.addEventListener('click', formValid) 
+let formControle = true
 
 // TEST FORMULAIRE
 function formValid(e){
@@ -56,6 +57,7 @@ function formValid(e){
       e.preventDefault()
       noFirstName.textContent = 'Prénom manquant'
       noFirstName.style.color = 'red'
+      formControle = false
   }else if (caracteresValid.test(inputFirstName.value) == false) {
       e.preventDefault()
       noFirstName.textContent = 'format incorrect'
@@ -67,6 +69,7 @@ function formValid(e){
       e.preventDefault()
       noLastName.textContent = 'Nom manquant'
       noLastName.style.color = 'red'
+      formControle = false
   }else if (caracteresValid.test(inputLastName.value) == false) {
       e.preventDefault()
       noLastName.textContent = 'format incorrect'
@@ -78,6 +81,7 @@ function formValid(e){
       e.preventDefault()
       noAddress.textContent = 'Adresse manquante'
       noAddress.style.color = 'red'
+      formControle = false
   }else if (valeursValidAddress.test(inputAddress.value) == false) {
       e.preventDefault()
       noAddress.textContent = 'format incorrect'
@@ -89,6 +93,7 @@ function formValid(e){
       e.preventDefault()
       noCity.textContent = 'Ville manquante'
       noCity.style.color = 'red'
+      formControle = false
   }else if (caracteresValid.test(inputCity.value) == false) {
       e.preventDefault()
       noCity.textContent = 'format incorrect'
@@ -100,6 +105,7 @@ function formValid(e){
       e.preventDefault()
       noEmail.textContent = 'Email manquant'
       noEmail.style.color = 'red'
+      formControle = false
   }else if (valeursValidMail.test(inputEmail.value) == false) {
       e.preventDefault()
       noEmail.textContent = 'format incorrect'
@@ -109,9 +115,70 @@ function formValid(e){
   }
 }
 
+/*
+  if (firstName &=
+    lastName &=
+    address &=
+    city &=
+    email === true) {
+    return true
+  } else {
+    return false
+  }
+*/
+
+/*
+  if (formControle == true)
+  return true
+  else {
+  return false
+  }
+*/
+
+/*
+  if (reportValidity(formControle = true))
+  formControle = formControle && contact.reportValidity()
+ 
+  if(!formControle){
+   break
+  }
+  if (formControle) {
+   console.log('formulaire valide')
+  }
+ */
+
+/*
+  if (formControle == true){
+    return contact
+}
+  else if (formControle == false){
+    effacer()
+  }
+  else {
+    effacer()
+    validation.reset()
+    window.location.reload()
+  }
+*/
+
+/*
+// EFFACER LES INPUT
+function effacer() {
+document.getElementById('inputFirstName').value = ''
+document.getElementById('inputLastName').value = ''
+document.getElementById('inputAddress').value = ''
+document.getElementById('inputCity').value = ''
+document.getElementById('inputEmail').value = ''
+}
+*/
+
+// validation.reset() >>> Bloque l'envoi du formulaire quand les champs ne sont pas bons
+// validation.clear() >>> essai nettoyage des champs input
+//window.location.reload()
+
 // CLICK VALIDATION FORMULAIRE
 let validation = document.getElementById('bouton_envoi')
-validation.addEventListener('click', function() { //formValid()
+validation.addEventListener('click', function() {
   let contact = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -119,7 +186,7 @@ validation.addEventListener('click', function() { //formValid()
     city: city.value,
     email: email.value
   }
-  
+
 // PARCOURS LES PRODUITS ET ENVOI ID
   let products = [] 
      for(let i = 0; i < products.length; i++) {
@@ -147,10 +214,3 @@ validation.addEventListener('click', function() { //formValid()
   sessionStorage.setItem('firstName', firstName.value)
   document.location.href = 'commande.html'
 })
-
-
-/*https://developer.mozilla.org/fr/docs/Learn/Forms/Form_validation 
-  if (monPanier == null) {
-  alert('Votre panier est vide')
-}
-*/

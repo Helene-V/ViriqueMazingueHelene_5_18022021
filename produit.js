@@ -53,7 +53,7 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
 // AJOUT DES CLASSES
     div.setAttribute('class', 'card-body rounded bg-light col-lg-6')
     titreTeddie.setAttribute('class', 'd-flex justify-content-center mb-3')
-    photo.setAttribute('class', 'rounded justify-content-center')
+    photo.setAttribute('class', 'img-fluid')
     description.setAttribute('class', 'mt-3')
     prix.setAttribute('class', 'fw-bold')
 
@@ -82,24 +82,3 @@ function addProduit(){
     addProduit()
     console.log(sessionStorage.getItem('panier'))
 })
-
-
-/*
-DOM Shadow - Virtual DOM : Le DOM SHADOW est toujours rattaché au DOM.
-Sert à la création et modification d'obj JS en // au DOM sans modifier l'API
-
-XMLHttpRequest - Ancienne méthode, pour récup' la promesse saisir :  onreadystatechange
-https://developers.google.com/web/updates/2015/03/introduction-to-fetch
-
-CALLBACK HELL : "Conditions, if, else if, else", mauvaise pratique selon l'écriture en escalier
-
-JSON.parse : 'désérialisation' récupération des données obj JS( ex : teddie xyz)
-
-JSON.stringify : 'sérialisation' (retour en chaine de caracteres JSON)
-
-APPELER UN ELEMENTS SUR LA PAGE params :
-https://developer.mozilla.org/fr/docs/Web/API/URL/searchParams
-
-EVENEMENT BOUTON AU CLIC ENVOI DANS LE PANIER (Local storage) session storage
-https://developer.mozilla.org/fr/docs/Web/API/Storage
-*/

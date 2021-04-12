@@ -6,7 +6,7 @@ const firstName = sessionStorage.getItem('firstName'),
 // RECUPERATION ET AFFICHAGE DU SESSION STORAGE
 document.getElementById('firstName').innerHTML = firstName + ' !'
 document.getElementById('orderId').innerHTML =  orderId
-document.getElementById('montant').innerHTML = price/100 + ',00 €'
+document.getElementById('montant').innerHTML = price/100 + ',00 €';
 
 //NETTOYAGE DU SESSION STORAGE
-//sessionStorage.clear()
+sessionStorage.clear()
