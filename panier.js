@@ -115,6 +115,45 @@ function formValid(e){
   }
 }
 
+// CLICK VALIDATION FORMULAIRE
+let validation = document.getElementById('bouton_envoi')
+validation.addEventListener('click', function() {
+  let contact = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    address: address.value,
+    city: city.value,
+    email: email.value
+  }
+
+// PARCOURS LES PRODUITS ET ENVOI ID
+  let products = [] 
+     for(let i = 0; i < products.length; i++) {
+      products.push(teddie._id)
+     }
+
+// REGROUPEMENT EN UN SEUL OBJET
+    let postData = {
+      contact, products,
+    }
+    let jsonPostData = JSON.stringify(postData)
+
+// ENVOI DES DONNEES
+    fetch('http://localhost:3000/api/teddies/order', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: jsonPostData
+  })
+
+.then(response => response.json()) 
+.then(data => sessionStorage.setItem('orderId', data.orderId))
+  sessionStorage.setItem('firstName', firstName.value)
+  document.location.href = 'commande.html'
+})
+
 /*
   if (firstName &=
     lastName &=
@@ -175,42 +214,3 @@ document.getElementById('inputEmail').value = ''
 // validation.reset() >>> Bloque l'envoi du formulaire quand les champs ne sont pas bons
 // validation.clear() >>> essai nettoyage des champs input
 //window.location.reload()
-
-// CLICK VALIDATION FORMULAIRE
-let validation = document.getElementById('bouton_envoi')
-validation.addEventListener('click', function() {
-  let contact = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    address: address.value,
-    city: city.value,
-    email: email.value
-  }
-
-// PARCOURS LES PRODUITS ET ENVOI ID
-  let products = [] 
-     for(let i = 0; i < products.length; i++) {
-      products.push(teddie._id)
-     }
-
-// REGROUPEMENT EN UN SEUL OBJET
-    let postData = {
-      contact, products,
-    }
-    let jsonPostData = JSON.stringify(postData)
-
-// ENVOI DES DONNEES
-    fetch('http://localhost:3000/api/teddies/order', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    },
-    body: jsonPostData
-  })
-
-.then(response => response.json()) 
-.then(data => sessionStorage.setItem('orderId', data.orderId))
-  sessionStorage.setItem('firstName', firstName.value)
-  document.location.href = 'commande.html'
-})

@@ -14,14 +14,13 @@ fetch('http://localhost:3000/api/teddies')
 
 //  AJOUT DE CLASSES AUX ELEMENTS   
     article.setAttribute('href', 'produit.html?id=' + teddie._id)
-    article.setAttribute('class','card bg-light col-lg-5 col-sm-6 mb-4 card-body shadow p-3 mb-5 bg-body rounded text-decoration-none')
-    //article.style.width('600')
+    article.setAttribute('class','card bg-light col-lg-5 col-sm-6 mb-4 ml-1 mr-1 card-body shadow p-3 mb-5 bg-body rounded text-decoration-none')
     photo.setAttribute('src', teddie.imageUrl)
     photo.setAttribute('alt','Photo de Teddie made in France')
     photo.setAttribute('class', 'rounded img-fluid h-100')
-    description.setAttribute('class', 'card-text text-dark')
-    titreTeddie.setAttribute('class', 'card-title text-center text-black-50')
-    prix.setAttribute('class', 'text-dark')
+    description.setAttribute('class', 'card-text text-secondary')
+    titreTeddie.setAttribute('class', 'card-title text-center text-dark')
+    prix.setAttribute('class', 'text-dark font-weight-bold text-center')
     
 //  RECUPERATION DE LA DATA A INCLURE AU DOCUMENT HTML
     let descriptionContaint = document.createTextNode(teddie.description)
