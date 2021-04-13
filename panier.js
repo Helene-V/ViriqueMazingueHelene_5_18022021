@@ -1,21 +1,25 @@
 // RECUPERATION ET AFFICHAGE DU PANIER
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
+if (monPanier === null){
+  alert("Votre panier est vide")
+}
+console.log(monPanier)
 
 let teddie = monPanier
 monPanier.forEach(teddie => {  
   let listeElement = document.createElement("li")
-  listeElement.setAttribute('class','list-group-item d-flex justify-content-between align-items-center')
+  listeElement.setAttribute('class','rounded list-group-item d-flex justify-content-between align-items-center')
 
-  let teddieName = document.createTextNode(teddie.name + ' ')
-  let teddiePrice = document.createTextNode(teddie.price/100 + ',00 €')
+  let teddieName = document.createTextNode('Teddie : ' + teddie.name)
+  let teddiePrice = document.createTextNode('Prix : ' + teddie.price/100 + ',00 €')
   let photo = document.createElement('img')
 
   photo.setAttribute('src', teddie.imageUrl)
   photo.setAttribute('alt','Photo de Teddie made in France')
-  photo.setAttribute('class','w-25')
+  photo.setAttribute('class','w-25 rounded')
 
-  listeElement.appendChild(photo)
   listeElement.appendChild(teddieName)
+  listeElement.appendChild(photo)
   listeElement.appendChild(teddiePrice)
   document.getElementById("affichage").appendChild(listeElement)
 }) 

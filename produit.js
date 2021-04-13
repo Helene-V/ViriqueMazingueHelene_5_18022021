@@ -37,7 +37,6 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
 
     let photo = createNode('img')
     photo.src = teddie.imageUrl
-    photo.setAttribute('class', 'img-responsive')
     photo.setAttribute('alt','Photo de Teddie made in France')
     photo.width = 500
     append(div,photo)
@@ -53,7 +52,7 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
 // AJOUT DES CLASSES
     div.setAttribute('class', 'card-body rounded bg-light col-lg-6')
     titreTeddie.setAttribute('class', 'd-flex justify-content-center mb-3')
-    photo.setAttribute('class', 'img-fluid')
+    photo.setAttribute('class', 'img-fluid rounded')
     description.setAttribute('class', 'mt-3')
     prix.setAttribute('class', 'fw-bold')
 

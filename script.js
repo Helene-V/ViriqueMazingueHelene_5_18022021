@@ -18,7 +18,7 @@ fetch('http://localhost:3000/api/teddies')
     photo.setAttribute('src', teddie.imageUrl)
     photo.setAttribute('alt','Photo de Teddie made in France')
     photo.setAttribute('class', 'rounded img-fluid h-100')
-    description.setAttribute('class', 'card-text text-secondary')
+    description.setAttribute('class', 'card-text text-dark')
     titreTeddie.setAttribute('class', 'card-title text-center text-dark')
     prix.setAttribute('class', 'text-dark font-weight-bold text-center')
     
