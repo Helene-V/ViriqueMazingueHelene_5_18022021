@@ -3,7 +3,6 @@ const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 if (monPanier === null){
   alert("Votre panier est vide")
 }
-console.log(monPanier)
 
 let teddie = monPanier
 monPanier.forEach(teddie => {  
@@ -38,6 +37,10 @@ let firstName = document.getElementById('inputFirstName'),
   city = document.getElementById('inputCity'),
   email = document.getElementById('inputEmail')
 
+// REGEX - EXPRESSION REGULIERE
+const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË]+$/;
+const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/;
+const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // RETOURNE INFO AU VISITEUR SI INPUTS INCORRECTS
 let testForm = document.getElementById('bouton_envoi')
@@ -47,77 +50,67 @@ let noFirstName = document.getElementById('noFirstName'),
   noAddress = document.getElementById('noAddress'),
   noCity = document.getElementById('noCity'),
   noEmail = document.getElementById('noEmail')
- 
-// REGEX - EXPRESSION REGULIERE
-const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË]+$/;
-const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/;
-const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-testForm.addEventListener('click', formValid) 
+
+let postData = document.getElementById('post')
 let formControle = true
+testForm.addEventListener('click', formValid) 
 
 // TEST FORMULAIRE
-function formValid(e){
-  if (inputFirstName.validity.valueMissing) {
-      e.preventDefault()
-      noFirstName.textContent = 'Prénom manquant'
+function formValid(){
+  if (!caracteresValid.test(inputFirstName.value)) {
+      noFirstName.textContent = 'Vérifiez ce champ svp'
       noFirstName.style.color = 'red'
       formControle = false
-  }else if (caracteresValid.test(inputFirstName.value) == false) {
-      e.preventDefault()
-      noFirstName.textContent = 'format incorrect'
-      noFirstName.style.color = 'orange'
-  }else{
-    console.log('Prénom ok')
+  } else { 
+      formControle = true
+      console.log('Prénom ok')
   }
-  if (inputLastName.validity.valueMissing) {
-      e.preventDefault()
-      noLastName.textContent = 'Nom manquant'
+  if (!caracteresValid.test(inputLastName.value)) {
+      noLastName.textContent = 'Vérifiez ce champ svp'
       noLastName.style.color = 'red'
       formControle = false
-  }else if (caracteresValid.test(inputLastName.value) == false) {
-      e.preventDefault()
-      noLastName.textContent = 'format incorrect'
-      noLastName.style.color = 'orange'
-  }else{
-    console.log('Nom ok')
+  } else {
+      formControle = true
+      console.log('Nom ok')
   }
-  if (inputAddress.validity.valueMissing) {
-      e.preventDefault()
-      noAddress.textContent = 'Adresse manquante'
+  if (!valeursValidAddress.test(inputAddress.value)) {
+      noAddress.textContent = 'Vérifiez ce champ svp'
       noAddress.style.color = 'red'
       formControle = false
-  }else if (valeursValidAddress.test(inputAddress.value) == false) {
-      e.preventDefault()
-      noAddress.textContent = 'format incorrect'
-      noAddress.style.color = 'orange'
-  }else{
-    console.log('Adresse ok')
+  } else {
+      formControle = true
+      console.log('Adresse ok')
   }
-  if (inputCity.validity.valueMissing) {
-      e.preventDefault()
-      noCity.textContent = 'Ville manquante'
+  if (!caracteresValid.test(inputCity.value)) {
+      noCity.textContent = 'Vérifiez ce champ svp'
       noCity.style.color = 'red'
       formControle = false
-  }else if (caracteresValid.test(inputCity.value) == false) {
-      e.preventDefault()
-      noCity.textContent = 'format incorrect'
-      noCity.style.color = 'orange'
-  }else{
-    console.log('Ville ok')
+  } else {
+      formControle = true
+      console.log('Ville ok')
   }
-  if (inputEmail.validity.valueMissing) {
-      e.preventDefault()
-      noEmail.textContent = 'Email manquant'
+  if (!valeursValidMail.test(inputEmail.value)) {
+      noEmail.textContent = 'Vérifiez ce champ svp'
       noEmail.style.color = 'red'
       formControle = false
-  }else if (valeursValidMail.test(inputEmail.value) == false) {
-      e.preventDefault()
-      noEmail.textContent = 'format incorrect'
-      noEmail.style.color = 'orange'
-  }else{
-    console.log('Mail ok')
+  } else {
+      formControle = true
+      console.log('Mail ok')
+  }
+  if(formControle = true) {
+    return contact = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    address: address.value,
+    city: city.value,
+    email: email.value
+    }
+	} else {
+    return false
   }
 }
+//console.log(formControle) retourne true quand tous les champs sont bons
+
 
 // CLICK VALIDATION FORMULAIRE
 let validation = document.getElementById('bouton_envoi')
@@ -157,64 +150,3 @@ validation.addEventListener('click', function() {
   sessionStorage.setItem('firstName', firstName.value)
   document.location.href = 'commande.html'
 })
-
-/*
-  if (firstName &=
-    lastName &=
-    address &=
-    city &=
-    email === true) {
-    return true
-  } else {
-    return false
-  }
-*/
-
-/*
-  if (formControle == true)
-  return true
-  else {
-  return false
-  }
-*/
-
-/*
-  if (reportValidity(formControle = true))
-  formControle = formControle && contact.reportValidity()
- 
-  if(!formControle){
-   break
-  }
-  if (formControle) {
-   console.log('formulaire valide')
-  }
- */
-
-/*
-  if (formControle == true){
-    return contact
-}
-  else if (formControle == false){
-    effacer()
-  }
-  else {
-    effacer()
-    validation.reset()
-    window.location.reload()
-  }
-*/
-
-/*
-// EFFACER LES INPUT
-function effacer() {
-document.getElementById('inputFirstName').value = ''
-document.getElementById('inputLastName').value = ''
-document.getElementById('inputAddress').value = ''
-document.getElementById('inputCity').value = ''
-document.getElementById('inputEmail').value = ''
-}
-*/
-
-// validation.reset() >>> Bloque l'envoi du formulaire quand les champs ne sont pas bons
-// validation.clear() >>> essai nettoyage des champs input
-//window.location.reload()
