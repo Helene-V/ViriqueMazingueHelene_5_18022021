@@ -1,9 +1,8 @@
 fetch('http://localhost:3000/api/teddies')
 .then((resp) => resp.json())                 // promesse 1
 .then(function(data) {                       // promesse 2
-    let teddie = data                        // import des teddies avec la data
-    return teddie.map(function(teddie) {     // fonction pour l'affichage des teddies et infos avec return (considéré comme une promesse ?)
-    console.log(teddie)
+    let teddie = data                        // import des teddies via data
+    return teddie.map(function(teddie) {     // fonction pour l'affichage des teddies
 
 //  CREATION DES ELEMENTS ET DES BALISES HTML  
     let titreTeddie = document.createElement('h2')
@@ -22,7 +21,7 @@ fetch('http://localhost:3000/api/teddies')
     titreTeddie.setAttribute('class', 'card-title text-center text-dark')
     prix.setAttribute('class', 'text-dark font-weight-bold text-center')
     
-//  RECUPERATION DE LA DATA A INCLURE AU DOCUMENT HTML
+//  RECUPERATION DE LA DATA A INCLURE AU DOCUMENT HTML VIA LE DOM
     let descriptionContaint = document.createTextNode(teddie.description)
     let divContaint = document.createTextNode(teddie.name)   
     let prixContaint = document.createTextNode(teddie.price/100 + ',00 €')
@@ -39,10 +38,21 @@ fetch('http://localhost:3000/api/teddies')
 // CREATION DU TEMPLATE GALERIE
     let containerGalerie = document.getElementById('galerie');
     containerGalerie.appendChild(article)
-    containerGalerie.style.marginTop = "60px";
-    containerGalerie.setAttribute('class', 'row d-flex justify-content-around')
-    console.log(containerGalerie)
+    containerGalerie.setAttribute('class', 'row d-flex justify-content-around mt-5')
+
+//  Vérification de la récupération des teddies
+    if (teddie) {
+        console.log('Chargement des données de l\'API :')
+    } else {
+        console.log('Erreur de récupération des données de l\'API')
+    }
+
+//  Vérification de la récupération des données fetch
+    console.log('Succès de la requête avec réponse JSON', teddie)
     })
-      
 })
+.catch(function() {
+        console.log('Erreur, vérifier le fetch, les promesses');
+})
+
 const afficherGalerie = document.querySelectorAll('#galerie');
