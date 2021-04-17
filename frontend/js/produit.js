@@ -1,6 +1,8 @@
 // RECUPERATION DES PARAMETRES
 let params = (new URL(document.location)).searchParams;
 let teddieId = params.get('id');
+console.log('Url de localisation et récupération par id : ' + document.location)
+console.log('Affichage de l\'id du produit : '+ teddieId)
 
 // CREATION DES NOEUDS (balises)
 function createNode(element){
@@ -14,13 +16,12 @@ function append(parent, elt){
 
 // CREATION DU PANIER POUR POUVOIR Y STOCKER TEDDIE
 if (sessionStorage.getItem('panier')) {
-    console.log('le panier existe')
+    console.log('Le panier existe')
 }
     else {
-        console.log('creation du panier')
+        console.log('Création du panier')
         let init = []
         sessionStorage.setItem('panier', (JSON.stringify(init)))
-    
     }
 let monPanier = JSON.parse(sessionStorage.getItem('panier'))
 
@@ -65,19 +66,33 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
         idColor.appendChild(option)
         option.setAttribute('value', couleur)
         option.textContent = couleur
+
+// Vérification récupération des couleurs
+        if (couleur) {console.log('Cet article existe dans la couleur : '+ couleur)
+        }
     })
 
 // AJOUTER LES ARTICLES DANS LE PANIER
-function addProduit(){
-    const bouton = document.getElementById('addProduit')
+function ajouterProduit(){
+    const bouton = document.getElementById('ajoutProduit')
     append(div,bouton)
     bouton.addEventListener('click', async function(){
         monPanier.push(teddie)
         sessionStorage.setItem('panier',JSON.stringify(monPanier))
+        // Alerte de confirmation d'ajout au panier
         alert('article ' + teddie.name + ' bien ajouté au panier')
         location.reload()
         })
     }
-    addProduit()
-    console.log(sessionStorage.getItem('panier'))
+    ajouterProduit()
+
+// Vérification de l'ajout au panier
+    if (ajouterProduit) { console.log(sessionStorage.getItem('panier'))
+    }
+
+//  Vérification de la récupération des données fetch
+    console.log('Succès de la requête avec réponse JSON', data)
+})
+.catch(function() {
+    console.log('Erreur, vérifier le fetch, les promesses')
 })
