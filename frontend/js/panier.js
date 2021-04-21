@@ -42,8 +42,8 @@ let firstName = document.getElementById('inputFirstName'),
   email = document.getElementById('inputEmail')
 
 // REGEX - EXPRESSION REGULIERE
-const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË]+$/;
-const valeursValidAddress = /^[a-z0-9]+\s[a-z0-9]+$/;
+const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË+\s]+$/;
+const valeursValidAddress = /^[0-9A-Za-z-+\s]+$/; ///^[a-zA-Z0-9]+\s[a-z0-9]+$/;
 const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // RETOURNE INFO AU VISITEUR SI INPUTS INCORRECTS

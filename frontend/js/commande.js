@@ -8,6 +8,8 @@ document.getElementById('firstName').innerHTML = firstName + ' !'
 document.getElementById('orderId').innerHTML =  orderId
 document.getElementById('montant').innerHTML = price/100 + ',00 €';
 
+// Vérification du contenu dans le local storage
+console.log(window.sessionStorage.getItem('orderId'))
+
 //NETTOYAGE DU SESSION STORAGE
 sessionStorage.clear()
-//sessionStorage.removeItem('panier','firstName','price','orderId');
