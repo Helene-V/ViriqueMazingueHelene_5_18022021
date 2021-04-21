@@ -31,8 +31,10 @@ let price = 0
 monPanier.forEach(totalPrice => {
   price += totalPrice.price
   sessionStorage.setItem('price',JSON.stringify(price))
+  document.getElementById('montant').innerHTML = ' ' + price/100 + ',00 €'
 })
 console.log('Addition qui donne le montant total des articles : '+ price/100 + ',00 €')
+
 
 // RECUPERATION DES INPUTS
 let firstName = document.getElementById('inputFirstName'),
@@ -43,7 +45,7 @@ let firstName = document.getElementById('inputFirstName'),
 
 // REGEX - EXPRESSION REGULIERE
 const caracteresValid = /^[a-zA-Z-èéêëîïôöçÈÉÊË+\s]+$/;
-const valeursValidAddress = /^[0-9A-Za-z-+\s]+$/; ///^[a-zA-Z0-9]+\s[a-z0-9]+$/;
+const valeursValidAddress = /^[0-9A-Za-z-+\s]+$/;
 const valeursValidMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // RETOURNE INFO AU VISITEUR SI INPUTS INCORRECTS
