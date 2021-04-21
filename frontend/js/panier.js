@@ -102,6 +102,7 @@ function formValid(){
       console.log('Mail ok')
   }
 
+// RECUPERATION DES DONNEES INPUTS SI LES CHAMPS SONT VALIDES
   if(formControle) {
     contact = {
     firstName: firstName.value,
