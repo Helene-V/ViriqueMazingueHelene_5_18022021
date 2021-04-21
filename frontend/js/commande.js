@@ -9,4 +9,4 @@ document.getElementById('orderId').innerHTML =  orderId
 document.getElementById('montant').innerHTML = price/100 + ',00 €';
 
 //NETTOYAGE DU SESSION STORAGE
-sessionStorage.clear()
+

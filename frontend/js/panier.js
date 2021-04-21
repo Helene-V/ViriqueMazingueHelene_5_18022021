@@ -1,8 +1,11 @@
 // RECUPERATION ET AFFICHAGE DU PANIER
 const monPanier = JSON.parse(sessionStorage.getItem('panier'))
+
+// Vérification de récupération des teddies
 if (monPanier === null){
   alert("Votre panier est vide")
 }
+console.log('Contenu session storage : ', monPanier)
 
 let teddie = monPanier
 monPanier.forEach(teddie => {  
@@ -21,7 +24,7 @@ monPanier.forEach(teddie => {
   listeElement.appendChild(photo)
   listeElement.appendChild(teddiePrice)
   document.getElementById("affichage").appendChild(listeElement)
-}) 
+})
 
 // CALCUL ET ENVOI DU TOTAL PRICE DANS LE SESSION STORAGE
 let price = 0
@@ -29,6 +32,7 @@ monPanier.forEach(totalPrice => {
   price += totalPrice.price
   sessionStorage.setItem('price',JSON.stringify(price))
 })
+console.log('Addition qui donne le montant total des articles : '+ price/100 + ',00 €')
 
 // RECUPERATION DES INPUTS
 let firstName = document.getElementById('inputFirstName'),
@@ -97,56 +101,44 @@ function formValid(){
       formControle = true
       console.log('Mail ok')
   }
-  if(formControle = true) {
-    return contact = {
+
+  if(formControle) {
+    contact = {
     firstName: firstName.value,
     lastName: lastName.value,
     address: address.value,
     city: city.value,
     email: email.value
     }
-	} else {
-    return false
-  }
-}
-//console.log(formControle) retourne true quand tous les champs sont bons
-
-
-// CLICK VALIDATION FORMULAIRE
-let validation = document.getElementById('bouton_envoi')
-validation.addEventListener('click', function() {
-  let contact = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    address: address.value,
-    city: city.value,
-    email: email.value
-  }
-
-// PARCOURS LES PRODUITS ET ENVOI ID
+  
   let products = [] 
-     for(let i = 0; i < products.length; i++) {
-      products.push(teddie._id)
-     }
+  for(let i = 0; i < products.length; i++) {
+    products.push(teddie._id)
+  }
 
-// REGROUPEMENT EN UN SEUL OBJET
-    let postData = {
-      contact, products,
-    }
-    let jsonPostData = JSON.stringify(postData)
+  let postData = {
+    contact, products,
+ }
+  let jsonPostData = JSON.stringify(postData)
 
 // ENVOI DES DONNEES
-    fetch('http://localhost:3000/api/teddies/order', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8'
-    },
-    body: jsonPostData
-  })
-
-.then(response => response.json()) 
-.then(data => sessionStorage.setItem('orderId', data.orderId))
-  sessionStorage.setItem('firstName', firstName.value)
-  document.location.href = 'commande.html'
+  fetch('http://localhost:3000/api/teddies/order', {
+  method: 'POST',
+  mode: 'cors',
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8'
+  },
+  body: jsonPostData
 })
+.then(response => response.json()) 
+.then(data => {let orderId = data.orderId
+sessionStorage.setItem('orderId', orderId)
+sessionStorage.setItem('firstName', firstName.value)
+document.location.href = 'commande.html'
+})
+
+} else {
+  return false
+}
+console.log('Retour du test des champs : ',formControle)
+}
