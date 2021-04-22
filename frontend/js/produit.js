@@ -51,11 +51,11 @@ fetch('http://localhost:3000/api/teddies/'+ teddieId)
     append(div,prix)
 
 // AJOUT DES CLASSES
-    div.setAttribute('class', 'card-body rounded bg-light col-lg-6')
-    titreTeddie.setAttribute('class', 'd-flex justify-content-center mb-3')
+    div.setAttribute('class', 'card-body rounded bg-light col-lg-6 shadow p-3 mb-5')
+    titreTeddie.setAttribute('class', 'd-flex justify-content-center mb-4')
     photo.setAttribute('class', 'img-fluid rounded')
-    description.setAttribute('class', 'mt-3')
-    prix.setAttribute('class', 'fw-bold')
+    description.setAttribute('class', 'mt-4')
+    prix.setAttribute('class', 'font-weight-bold mt-4 mb-4')
 
 // AFFICHAGE DES OPTIONS DE COULEURS - LISTE DEROULANTE
     let idColor = document.getElementById('color')

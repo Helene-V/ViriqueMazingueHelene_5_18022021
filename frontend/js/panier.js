@@ -3,22 +3,23 @@ const monPanier = JSON.parse(sessionStorage.getItem('panier'))
 
 // Vérification de récupération des teddies
 if (monPanier === null){
-  alert("Votre panier est vide")
+  alert('Votre panier est vide')
+  document.getElementById('montant').innerHTML = '0€'
 }
 console.log('Contenu session storage : ', monPanier)
 
 let teddie = monPanier
 monPanier.forEach(teddie => {  
-  let listeElement = document.createElement("li")
+  let listeElement = document.createElement('li')
   listeElement.setAttribute('class','rounded list-group-item d-flex justify-content-between align-items-center')
 
-  let teddieName = document.createTextNode('Teddie : ' + teddie.name)
+  let teddieName = document.createTextNode(teddie.name)
   let teddiePrice = document.createTextNode('Prix : ' + teddie.price/100 + ',00 €')
   let photo = document.createElement('img')
 
   photo.setAttribute('src', teddie.imageUrl)
   photo.setAttribute('alt','Photo de Teddie made in France')
-  photo.setAttribute('class','w-25 rounded')
+  photo.setAttribute('class','w-25 rounded card shadow-sm')
 
   listeElement.appendChild(teddieName)
   listeElement.appendChild(photo)
@@ -31,10 +32,9 @@ let price = 0
 monPanier.forEach(totalPrice => {
   price += totalPrice.price
   sessionStorage.setItem('price',JSON.stringify(price))
-  document.getElementById('montant').innerHTML = ' ' + price/100 + ',00 €'
+  document.getElementById('montant').innerHTML = price/100 + ',00 €'
 })
 console.log('Addition qui donne le montant total des articles : '+ price/100 + ',00 €')
-
 
 // RECUPERATION DES INPUTS
 let firstName = document.getElementById('inputFirstName'),
