@@ -67,6 +67,7 @@ function formValid(){
       noFirstName.textContent = 'Vérifiez ce champ svp'
       noFirstName.style.color = 'red'
       formControle = false
+      console.log('Prénom erreur')
   } else { 
       formControle = true
       console.log('Prénom ok')
@@ -75,6 +76,7 @@ function formValid(){
       noLastName.textContent = 'Vérifiez ce champ svp'
       noLastName.style.color = 'red'
       formControle = false
+      console.log('Nom erreur')
   } else {
       formControle = true
       console.log('Nom ok')
@@ -83,6 +85,7 @@ function formValid(){
       noAddress.textContent = 'Vérifiez ce champ svp'
       noAddress.style.color = 'red'
       formControle = false
+      console.log('Adresse erreur')
   } else {
       formControle = true
       console.log('Adresse ok')
@@ -91,6 +94,7 @@ function formValid(){
       noCity.textContent = 'Vérifiez ce champ svp'
       noCity.style.color = 'red'
       formControle = false
+      console.log('Ville erreur')
   } else {
       formControle = true
       console.log('Ville ok')
@@ -99,6 +103,7 @@ function formValid(){
       noEmail.textContent = 'Vérifiez ce champ svp'
       noEmail.style.color = 'red'
       formControle = false
+      console.log('Mail erreur')
   } else {
       formControle = true
       console.log('Mail ok')
@@ -113,12 +118,14 @@ function formValid(){
     city: city.value,
     email: email.value
     }
-  
+
+// PARCOURS LES PRODUITS ET ENVOI ID
   let products = [] 
   for(let i = 0; i < products.length; i++) {
     products.push(teddie._id)
   }
 
+// REGROUPEMENT EN UN SEUL OBJET
   let postData = {
     contact, products,
  }
@@ -139,9 +146,10 @@ sessionStorage.setItem('orderId', orderId)
 sessionStorage.setItem('firstName', firstName.value)
 document.location.href = 'commande.html'
 })
-
-} else {
-  return false
-}
-console.log('Retour du test des champs : ',formControle)
+.catch(function(error) {
+  console.log('La requête a échouée', error);
+})
+  } else {
+   return false
+  }
 }

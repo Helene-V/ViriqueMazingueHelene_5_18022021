@@ -40,13 +40,6 @@ fetch('http://localhost:3000/api/teddies')
     containerGalerie.appendChild(article)
     containerGalerie.setAttribute('class', 'row d-flex justify-content-around mt-5')
 
-//  Vérification de la récupération des teddies
-    if (teddie) {
-        console.log('Chargement des données de l\'API :')
-    } else {
-        console.log('Erreur de récupération des données de l\'API')
-    }
-
 //  Vérification de la récupération des données fetch
     console.log('Succès de la requête avec réponse JSON', teddie)
     })
