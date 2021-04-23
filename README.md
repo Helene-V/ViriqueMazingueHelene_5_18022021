@@ -20,4 +20,10 @@ Le serveur doit fonctionner sur `localhost` avec le port par défaut` 3000`. Si 
 le serveur fonctionne sur un autre port pour quelque raison que ce soit, il est imprimé sur le
 console au démarrage du serveur, par ex. `Écoute sur le port 3001`.
 
+### Informations complémentaires ###
+- L'application Orinoco a été développée sur la branche "projet"
+- La branche main contient le plan de tests ainsi que les maquettes pour la réalisation du projet 5
+
 # Viriquehelene_5_18022021
+
+
