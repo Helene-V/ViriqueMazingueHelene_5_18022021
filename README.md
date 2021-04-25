@@ -1,6 +1,6 @@
 # Orinoco #
 
-This is the back end server for Project 5 of the Junior Web Developer path.
+Projet 5 OpenClassRooms du parcours développeur web
 
 ### Prerequisites ###
 
@@ -13,5 +13,10 @@ can then run the server with `node server`.
 The server should run on `localhost` with default port `3000`. If the
 server runs on another port for any reason, this is printed to the
 console when the server starts, e.g. `Listening on port 3001`.
+
+### Informations ###
+
+- L'application est développée depuis la branche "projet"
+- Le plan de tests et les maquettes sont à disposition sur la branche "main"
 
 # Viriquehelene_5_18022021
